@@ -20,6 +20,8 @@ func main() {
 
 // handler echoes the Path component of the requested URL.
 func handler(w http.ResponseWriter, r *http.Request) {
+	// Exercise 1.11 localhost:8080 doesn't respond
+	// for { if false { return } }
 	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
 }
 

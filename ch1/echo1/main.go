@@ -19,6 +19,15 @@ func main() {
 		sep = " "
 	}
 	fmt.Println(s)
+
+	// Exercise 1.1
+	fmt.Println("command: " + os.Args[0])
+
+	// Exercise 1.2
+	fmt.Println("arguments: ")
+	for i, arg := range os.Args[1:] {
+		fmt.Printf("%d:\t%s\n", i, arg)
+	}
 }
 
 //!-
