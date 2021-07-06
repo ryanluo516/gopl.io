@@ -44,7 +44,7 @@ var palette2 = []color.Color{
 const (
 	whiteIndex = 0 // first color in palette
 	blackIndex = 1 // next color in palette
-	cycles  = 5     // number of complete x oscillator revolutions
+	cycles     = 5 // number of complete x oscillator revolutions
 )
 
 func main() {
@@ -61,7 +61,7 @@ func main() {
 			if err := r.ParseForm(); err != nil {
 				log.Print(err)
 			}
-			for k,v := range r.Form {
+			for k, v := range r.Form {
 				if k == "cycles" {
 					c, err := strconv.Atoi(v[0])
 					if err != nil {
@@ -99,7 +99,7 @@ func lissajous(out io.Writer, cycles int) {
 		for t := 0.0; t < float64(cycles)*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), uint8(i/16 + 1))
+			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), uint8(i/16+1))
 		}
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
