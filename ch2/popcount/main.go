@@ -28,4 +28,35 @@ func PopCount(x uint64) int {
 		pc[byte(x>>(7*8))])
 }
 
+// Exercise 2.3
+func PopCountLoop(x uint64) int {
+	sum := 0
+	for i := 0; i < 8; i++ {
+		sum += int(pc[byte(x>>(i*8))])
+	}
+
+	return sum
+}
+
+// Exercise 2.4
+func PopCountShitf(x uint64) int {
+	sum := 0
+	for i := 0; i < 64; i++ {
+		sum += int(x >> i & 1)
+	}
+
+	return sum
+}
+
+// Exercise 2.5
+func PopCountClear(x uint64) int {
+	sum := 0
+	for x > 0 {
+		x = x & (x - 1)
+		sum++
+	}
+
+	return sum
+}
+
 //!-
