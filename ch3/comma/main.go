@@ -17,8 +17,10 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -35,6 +37,67 @@ func comma(s string) string {
 		return s
 	}
 	return comma(s[:n-3]) + "," + s[n-3:]
+}
+
+// Exercise 3.10
+func comma1(s string) string {
+	n := len(s) % 3
+
+	var buf bytes.Buffer
+	for i, c := range s {
+		buf.WriteString(string(c))
+		if (i+1-n)%3 == 0 && i+1 < len(s) {
+			buf.WriteString(",")
+		}
+	}
+
+	return buf.String()
+}
+
+// Exercise 3.11
+func comma2(s string) string {
+	var buf bytes.Buffer
+
+	if strings.HasPrefix(s, "+") || strings.HasPrefix(s, "-") {
+		buf.WriteString(s[:1])
+		s = s[1:]
+	}
+
+	dot := strings.LastIndex(s, ".")
+
+	var suf string
+	if dot > 0 {
+		suf = s[dot:]
+		s = s[:dot]
+	}
+
+	n := len(s) % 3
+
+	for i, c := range s {
+		buf.WriteString(string(c))
+		if (i+1-n)%3 == 0 && i+1 < len(s) {
+			buf.WriteString(",")
+		}
+	}
+
+	buf.WriteString(suf)
+
+	return buf.String()
+}
+
+// Exercise 3.12
+func anagrams(str1, str2 string) bool {
+	if len(str1) != len(str2) {
+		return false
+	}
+
+	for _, c := range str1 {
+		if !strings.Contains(str2, string(c)) {
+			return false
+		}
+	}
+
+	return true
 }
 
 //!-
